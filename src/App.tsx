@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import About from './components/About';
 import Download from './components/Download';
+import Footer from './components/Footer';
 import Navigation from './components/Navigation';
+import TermsOfService from './components/TermsOfService';
+import CancellationRefundPolicy from './components/CancellationRefundPolicy';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import AccountDeletion from './components/AccountDeletion';
 
-function App() {
+function AppContent() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
@@ -33,7 +39,22 @@ function App() {
       <Features />
       <About />
       <Download />
+      <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<AppContent />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/cancellation-refund-policy" element={<CancellationRefundPolicy />} />
+        <Route path="/account-deletion" element={<AccountDeletion />} />
+      </Routes>
+    </Router>
   );
 }
 
